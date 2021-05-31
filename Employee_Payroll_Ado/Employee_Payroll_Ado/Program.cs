@@ -21,9 +21,9 @@ namespace Employee_Payroll_Ado
             Inputdata();//uc3
 
 
-            //  repository.EnsureDataBaseConnection();
+            //repository.EnsureDataBaseConnection();
            
-            // repository.GetAllEmployeeData();
+            //repository.GetAllEmployeeData();
             Console.ReadLine();
         }
 
@@ -45,6 +45,8 @@ namespace Employee_Payroll_Ado
             model.TaxablePay = 500;
 
             repository.AddEmployee(model);
+
+            Console.WriteLine(repository.UpdateSalaryIntoDatabase("Nilima", 50000) ? "Update done successfully " : "Update Failed");
         }
     }
 }

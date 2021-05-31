@@ -42,7 +42,7 @@ namespace EmployeePayrollADO
                 using (connection)
                 {
                     //Query to get all the data from table.
-                    string query = @"select * from dbo.Employee_Data";
+                    string query = @"select * from dbo.Employee_Daata";
                     //Opening the connection to the statrt mapping.
                     this.connection.Open();
                     //Implementing the command on the connection fetched database table.
@@ -104,7 +104,7 @@ namespace EmployeePayrollADO
                 {
                     connection.Open();
                     //Creating a stored Procedure for adding employees into database
-                    SqlCommand command = new SqlCommand("dbo.Employee_Data", this.connection);
+                    SqlCommand command = new SqlCommand("dbo.Employee_Daata", this.connection);
                     //Command type is set as stored procedure
                     command.CommandType = CommandType.StoredProcedure;
                     //Adding values from employeemodel to stored procedure using disconnected architecture
@@ -136,6 +136,37 @@ namespace EmployeePayrollADO
                 connection.Close();
             }
 
+        }
+        //UC3_Updating contact
+        public bool UpdateSalaryIntoDatabase(string empName, double basicPay)
+        {
+           
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    string query = @"update dbo.Employee_Daata set basic_pay=@p1 where EmpName=@p2";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@p1", basicPay);
+                    command.Parameters.AddWithValue("@p2", empName);
+                    var result = command.ExecuteNonQuery();
+                    connection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
