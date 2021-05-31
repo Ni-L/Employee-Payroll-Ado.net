@@ -8,6 +8,8 @@ namespace Employee_Payroll_Ado
 {
     class EmployeeModel
     {
+        // @"Data Source=DESKTOP-DL043RM;Initial Catalog=Employee_Payroll;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public long PhoneNumber { get; set; }
